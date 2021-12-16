@@ -43,6 +43,14 @@
         for (let i = 0; i < classLabels.length; i++) {
             labelContainer.appendChild(document.createElement("div"));
         }
+        if(prediction[0].plobability.toFixed(2)>0.9){
+            window.location.href="./hello.html";
+        }else if(prediction[1].plobability.toFixed(2)>0.9){
+            window.location.href="./goodevening.html";
+        }else if(prediction[2].plobability.toFixed(2)>0.9){
+            window.location.href="./goodmorning.html";
+        }
+
 
         // listen() takes two arguments:
         // 1. A callback function that is invoked anytime a word is recognized.
@@ -50,6 +58,7 @@
         recognizer.listen(result => {
             const scores = result.scores; // probability of prediction for each class
             // render the probability scores per class
+            
             for (let i = 0; i < classLabels.length; i++) {
                 const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
